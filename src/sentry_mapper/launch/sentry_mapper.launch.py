@@ -33,8 +33,8 @@ def generate_launch_description():
     mapper = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(slam_toolbox_launch_path),
         launch_arguments={
-            'params_file' : mapper_config_path,
-	        'use_sim_time' : 'false'
+            'slam_params_file' : mapper_config_path,
+	    'use_sim_time' : 'false'
         }.items()
     )
 
