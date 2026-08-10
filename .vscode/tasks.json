@@ -1,0 +1,62 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "colcon",
+			"args": [
+				"build",
+				"--symlink-install",
+				"--cmake-args",
+				"-DCMAKE_EXPORT_COMPILE_COMMANDS=1",
+				"--no-warn-unused-cli",
+				"-DCMAKE_CXX_STANDARD=17", 
+				"-DCMAKE_CXX_STANDARD_REQUIRED=ON"
+			],
+			"problemMatcher": [
+				"$colcon-gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"label": "colcon: Colcon Build Release"
+		},
+
+		{
+			"type": "colcon",
+			"args": [
+				"build",
+				"--symlink-install",
+				"--cmake-args",
+				"-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+				"-DCMAKE_EXPORT_COMPILE_COMMANDS=1",
+				"--no-warn-unused-cli",
+				"-DCMAKE_CXX_STANDARD=17", 
+				"-DCMAKE_CXX_STANDARD_REQUIRED=ON"
+			],
+			"label": "colcon: Colcon Build Test",
+			"problemMatcher": [],
+			"group": {
+				"kind": "test",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "colcon",
+			"args": [
+				"build",
+				"--symlink-install",
+				"--cmake-args",
+				"-DCMAKE_BUILD_TYPE=Debug",
+				"-DCMAKE_EXPORT_COMPILE_COMMANDS=1",
+				"--no-warn-unused-cli",
+				"-DCMAKE_CXX_STANDARD=17", 
+				"-DCMAKE_CXX_STANDARD_REQUIRED=ON"
+			],
+			"problemMatcher": [
+				"$colcon-gcc"
+			],
+			"label": "colcon: Colcon Build Debug"
+		}
+    ]
+}
