@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>sentry_realsense</name>
+  <version>0.1.1</version>
+  <description>sentry_realsense</description>
+
+  <maintainer email="dongjin@todo.todo">dongjin</maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>realsense2_camera</depend>
+  <depend>imu_filter_madgwick</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
