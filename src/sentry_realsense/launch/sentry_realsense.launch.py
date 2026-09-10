@@ -6,11 +6,24 @@ from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
+from launch.substitutions import Command
 
 def generate_launch_description():
     realsense_package = get_package_share_directory('realsense2_camera')
 
     realsense_launch_path = os.path.join(realsense_package, 'launch', 'rs_launch.py')
+    
+    robot_state_publisher = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        parameters=[{
+        'robot_description': Command([
+                'xacro ', 'urdf/mount.urdf.xacro',
+            ]),
+        'frame_prefix' : 'rs/'
+        }],
+    )
+    
 
     imu_filter = Node(
         package='imu_filter_madgwick', 
@@ -48,6 +61,7 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        robot_state_publisher,
         imu_filter,
         realsense
     ])
