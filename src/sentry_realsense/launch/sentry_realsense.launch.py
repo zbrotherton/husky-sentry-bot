@@ -11,7 +11,7 @@ from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
     realsense_package = get_package_share_directory('realsense2_camera')
-    sentry_realsense_package  = FindPackageShare(package='sentry_realsense_package').find('sentry_realsense_package')
+    sentry_realsense_package  = FindPackageShare(package='sentry_realsense_package').find('sentry_realsense')
 
     realsense_launch_path = os.path.join(realsense_package, 'launch', 'rs_launch.py')
     
