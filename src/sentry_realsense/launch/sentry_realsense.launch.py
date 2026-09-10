@@ -21,8 +21,7 @@ def generate_launch_description():
         parameters=[{
         'robot_description': Command([
                 'xacro ', os.path.join(sentry_realsense_package, 'urdf/mount.urdf.xacro'),
-            ]),
-        'frame_prefix' : 'rs/'
+            ])
         }],
     )
     
