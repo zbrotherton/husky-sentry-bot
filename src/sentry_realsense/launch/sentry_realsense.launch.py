@@ -55,7 +55,7 @@ def generate_launch_description():
             'color_fps' : '60',
             'depth_fps' : '60', 
             'gyro_fps' : '200',
-            'accel_fps' : '63',
+            'accel_fps' : '200',
             'publish_tf' : 'true',
 	    'tf_prefix' : 'rs_'
         }.items()
