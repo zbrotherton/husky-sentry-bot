@@ -7,9 +7,11 @@ from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 from launch.substitutions import Command
+from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
     realsense_package = get_package_share_directory('realsense2_camera')
+    sentry_realsense_package  = FindPackageShare(package='sentry_realsense_package').find('sentry_realsense_package')
 
     realsense_launch_path = os.path.join(realsense_package, 'launch', 'rs_launch.py')
     
@@ -18,7 +20,7 @@ def generate_launch_description():
         executable='robot_state_publisher',
         parameters=[{
         'robot_description': Command([
-                'xacro ', 'urdf/mount.urdf.xacro',
+                'xacro ', os.path.join(sentry_realsense_package, 'urdf/mount.urdf.xacro'),
             ]),
         'frame_prefix' : 'rs/'
         }],
