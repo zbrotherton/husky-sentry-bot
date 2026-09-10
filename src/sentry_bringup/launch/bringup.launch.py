@@ -18,16 +18,9 @@ def generate_launch_description():
         ),
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
-                [FindPackageShare('sentry_realsense'),
+                [FindPackageShare('sentry_mapper'),
                  '/launch',
-                 '/sentry_realsense.launch.py']
-            )
-        ),
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                [FindPackageShare('sentry_rtabmap'),
-                 '/launch',
-                 '/sentry_rtabmap.launch.py']
+                 '/sentry_mapper.launch.py']
             )
         ),
         Node(
