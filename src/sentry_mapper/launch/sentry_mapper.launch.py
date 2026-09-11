@@ -25,7 +25,7 @@ def generate_launch_description():
     sentry_mapper_package = get_package_share_directory('sentry_mapper')
     slam_toolbox_package  = get_package_share_directory('slam_toolbox')
     
-    slam_toolbox_launch_path = os.path.join(slam_toolbox_package , 'launch', 'navigation_launch.py')
+    slam_toolbox_launch_path = os.path.join(slam_toolbox_package , 'launch', 'online_async_launch.py')
     config_path = os.path.join(sentry_mapper_package, 'config', 'mapper_params_online_async.yaml')
 
     mapper = IncludeLaunchDescription(
