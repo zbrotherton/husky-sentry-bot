@@ -32,7 +32,8 @@ def generate_launch_description():
     mapper = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(slam_toolbox_launch_path),
         launch_arguments={
-            'params_file' : config_path
+            'params_file' : config_path,
+	    'use_sim_time' : 'false'
         }.items()
     )
     
@@ -41,7 +42,7 @@ def generate_launch_description():
         executable='robot_state_publisher',
         parameters=[{
         'robot_description': Command([
-                'xacro ', os.path.join(sentry_mapper_package, 'urdf/mount.urdf.xacro'),
+                'xacro ', os.path.join(sentry_mapper_package, 'urdf/lidar.urdf.xacro'),
             ])
         }],
     )
