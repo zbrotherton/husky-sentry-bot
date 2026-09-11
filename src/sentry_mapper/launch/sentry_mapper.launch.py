@@ -3,7 +3,7 @@ import os
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
-from launch_ros.substitutions import FindPackageShare
+from launch_ros.substitutions import FindPackageShare, Command
 from launch_ros.actions import Node
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -34,10 +34,21 @@ def generate_launch_description():
             'params_file' : config_path
         }.items()
     )
+    
+    robot_state_publisher = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        parameters=[{
+        'robot_description': Command([
+                'xacro ', os.path.join(sentry_mapper_package, 'urdf/mount.urdf.xacro'),
+            ])
+        }],
+    )
 
     nodes = [
         rplidar,
-        mapper
+        mapper,
+        robot_state_publisher
     ]
 
     return LaunchDescription(nodes)
