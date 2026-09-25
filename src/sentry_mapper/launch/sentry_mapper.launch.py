@@ -27,14 +27,27 @@ def generate_launch_description():
     slam_toolbox_package  = get_package_share_directory('slam_toolbox')
     
     slam_toolbox_launch_path = os.path.join(slam_toolbox_package , 'launch', 'online_async_launch.py')
-    config_path = os.path.join(sentry_mapper_package, 'config', 'mapper_params_online_async.yaml')
+    mapper_config_path = os.path.join(sentry_mapper_package, 'config', 'mapper_params_online_async.yaml')
+    filter_config_path = os.path.join(sentry_mapper_package, 'config', 'bounds_filter.yaml')
 
     mapper = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(slam_toolbox_launch_path),
         launch_arguments={
-            'params_file' : config_path,
-	    'use_sim_time' : 'false'
+            'params_file' : mapper_config_path,
+	        'use_sim_time' : 'false'
         }.items()
+    )
+
+    laser_filter_node = Node(
+        package='laser_filters',
+        executable='scan_to_scan_filter_chain',
+        name='laser_filter',
+        parameters=[filter_config_path],
+        remappings=[
+            ('scan', '/scan'),
+            ('scan_filtered', '/scan_filtered')
+        ],
+        output='screen'
     )
     
     robot_state_publisher = Node(
@@ -50,6 +63,7 @@ def generate_launch_description():
     nodes = [
         rplidar,
         mapper,
+        laser_filter_node,
         robot_state_publisher
     ]
 
