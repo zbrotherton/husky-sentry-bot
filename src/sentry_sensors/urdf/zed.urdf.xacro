@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<robot name="husky" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <link name="base_link"></link>
+
+    <link name="zed_camera_link"></link>
+
+    <joint name="zed_joint" type="fixed">
+        <origin xyz="0.058363 0 0.382451" rpy="0 0 0" />
+        <parent link="base_link"/>
+        <child link="zed_camera_link" />
+    </joint>
+
+</robot>
