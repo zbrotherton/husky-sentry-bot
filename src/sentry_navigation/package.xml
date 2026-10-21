@@ -3,7 +3,7 @@
 <package format="3">
   <name>sentry_navigation</name>
   <version>0.0.0</version>
-  <description>TODO</description>
+  <description>Nav2 utilization for the 2026 IGVC Robot</description>
   <maintainer email="zanebrotherton@gmail.com">Zane Brotherton</maintainer>
   <license>MIT</license>
 
