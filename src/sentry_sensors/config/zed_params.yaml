@@ -9,6 +9,10 @@ pos_tracking:
 
   area_memory: false
   reset_odom_with_loop_closure: false
+  
+depth:
+  publish_point_cloud: true
+  point_cloud_freq: 10.0
 
 gnss_fusion:
   gnss_fusion_enabled: false
