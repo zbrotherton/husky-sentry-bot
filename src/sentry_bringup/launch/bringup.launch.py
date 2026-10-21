@@ -18,9 +18,9 @@ def generate_launch_description():
         ),
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
-                [FindPackageShare('sentry_mapper'),
+                [FindPackageShare('sentry_localization'),
                  '/launch',
-                 '/sentry_mapper.launch.py']
+                 '/sentry_localization.launch.py']
             )
         ),
         Node(
