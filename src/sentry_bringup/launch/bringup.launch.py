@@ -23,6 +23,13 @@ def generate_launch_description():
                  '/sentry_localization.launch.py']
             )
         ),
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                [FindPackageShare('sentry_sensors'),
+                 '/launch',
+                 '/sentry_sensors.launch.py']
+            )
+        ),
         Node(
             package='foxglove_bridge',
             executable='foxglove_bridge'

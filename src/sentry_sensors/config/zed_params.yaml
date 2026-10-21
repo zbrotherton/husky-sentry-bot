@@ -1,0 +1,14 @@
+pos_tracking:
+  pos_tracking_enabled: true
+  imu_fusion: true
+
+  publish_tf: false
+  publish_map_tf: false
+
+  publish_odom_pose: true
+
+  area_memory: false
+  reset_odom_with_loop_closure: false
+
+gnss_fusion:
+  gnss_fusion_enabled: false
