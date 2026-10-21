@@ -1,56 +1,37 @@
-from launch import LaunchDescription
-from launch.substitutions import  PathJoinSubstitution
-from launch_ros.substitutions import FindPackageShare
-from launch_ros.actions import Node
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
-from launch.launch_description_sources import PythonLaunchDescriptionSource
 
-IMU_NAME = "TODO" # TODO
+import os
+
+from launch import LaunchDescription
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import (
+    PythonLaunchDescriptionSource
+)
+from ament_index_python.packages import (
+    get_package_share_directory
+)
+
 
 def generate_launch_description():
-    launch_zed_node = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            [FindPackageShare("zed_wrapper"),
-             '/launch',
-             '/zed_camera.launch.py']
-        ),
-        launch_arguments={
-            'camera_model': 'zed2i',
-            'publish_tf': 'false',
-            'publish_urdf': 'false',
-        }.items()
+    zed_launch = os.path.join(
+        get_package_share_directory("zed_wrapper"),
+        "launch",
+        "zed_camera.launch.py"
     )
-    # Check here for published topics: https://www.stereolabs.com/docs/ros2/zed-node
-    
-    launch_rplidar_node = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            [FindPackageShare("rplidar_ros"),
-             '/launch',
-             '/rplidar_s2e_launch.py']
-        ),
+
+    zed_config = os.path.join(
+        get_package_share_directory("sentry_sensors"),
+        "config",
+        "zed_params.yaml"
+    )
+
+    zed = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(zed_launch),
         launch_arguments={
-            'udp_ip' : '10.42.0.5',
-            'frame_id' : 'laser_frame'
+            "camera_model": "zed2i",
+            "publish_tf": "false",
+            "publish_map_tf": "false",
+            "ros_params_override_path": zed_config,
         }.items()
     )
 
-    launch_compass_bridge_node = Node(
-        package='compass_bridge',
-        executable='compass_bridge',
-        name='compass_bridge',
-        output='screen',
-        parameters=[{
-            "i2c_bus" : 7,
-            "device_address" : 0x0E
-        }],
-    )
-
-    nodes = [
-        launch_navsat_node,
-        launch_led_bridge_node,
-        launch_zed_node,
-        launch_rplidar_node,
-        launch_compass_bridge_node
-    ]
-
-    return LaunchDescription(nodes)
+    return LaunchDescription([zed])
