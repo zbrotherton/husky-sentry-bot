@@ -15,5 +15,5 @@ scan_to_scan_filter_chain:
       params:
         #laser_frame: laser_frame
         # sector to remove (rads)
-        lower_angle: 3.927
-        upper_angle: 4.102
+        lower_angle: -2.356
+        upper_angle: -2.181
