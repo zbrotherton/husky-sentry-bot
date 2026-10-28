@@ -41,7 +41,7 @@ def generate_launch_description():
     laser_filter_node = Node(
         package='laser_filters',
         executable='scan_to_scan_filter_chain',
-        name='laser_filter',
+        #name='laser_filter',
         parameters=[filter_config_path],
         remappings=[
             ('scan', '/scan'),

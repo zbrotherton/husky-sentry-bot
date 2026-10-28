@@ -1,19 +1,19 @@
 scan_to_scan_filter_chain:
   ros__parameters:
-    left_standoff_filter:
+    filter1: #left_standoff_filter:
       name: left_standoff_filter
       type: laser_filters/LaserScanAngularBoundsFilterInPlace
       params:
-        laser_frame: laser_frame 
+        #laser_frame: laser_frame 
         #sector to remove (rads)
         lower_angle: 0.750
         upper_angle: 0.820
 
-    right_standoff_filter:
+    filter2: #right_standoff_filter:
       name: right_standoff_filter
       type: laser_filters/LaserScanAngularBoundsFilterInPlace
       params:
-        laser_frame: laser_frame
+        #laser_frame: laser_frame
         # sector to remove (rads)
         lower_angle: -0.820
         upper_angle: -0.750
