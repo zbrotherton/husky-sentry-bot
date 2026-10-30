@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<robot name="sentry" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:arg name="use_sim" default="false"/>
+    <xacro:arg name="use_mock_hardware" default="false"/>
+
+    <!-- Include generated urdf -->
+    <xacro:include filename="$(find sentry_description)/urdf/sentry_geometry.urdf" />
+
+
+
+</robot>
