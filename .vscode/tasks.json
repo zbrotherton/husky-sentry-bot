@@ -57,6 +57,24 @@
 				"$colcon-gcc"
 			],
 			"label": "colcon: Colcon Build Debug"
-		}
+		},
+		{
+			"label": "OTR: Rebuild URDF",
+			"type": "shell",
+			"command": "onshape-to-robot src/sentry_description/config.json --convert && mv src/sentry_description/sentry_geometry.urdf src/sentry_description/urdf/",
+			"problemMatcher": [],
+		},
+		{
+			"label": "OTR: Pull URDF (API CREDITS)",
+			"type": "shell",
+			"command": "onshape-to-robot src/sentry_description/config.json --retrieve",
+			"problemMatcher": [],
+		},
+		{
+			"label": "OTR: Open Pybullet Simulation",
+			"type": "shell",
+			"command": "onshape-to-robot-bullet src/sentry_description/urdf/sentry_geometry.urdf",
+			"problemMatcher": [],
+		},
     ]
 }
