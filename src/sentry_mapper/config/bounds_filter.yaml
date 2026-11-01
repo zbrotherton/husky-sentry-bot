@@ -4,7 +4,6 @@ scan_to_scan_filter_chain:
       name: left_standoff_filter
       type: laser_filters/LaserScanAngularBoundsFilterInPlace
       params:
-        #laser_frame: laser_frame 
         #sector to remove (rads)
         lower_angle: -0.945
         upper_angle: -0.804
@@ -13,7 +12,6 @@ scan_to_scan_filter_chain:
       name: right_standoff_filter
       type: laser_filters/LaserScanAngularBoundsFilterInPlace
       params:
-        #laser_frame: laser_frame
         # sector to remove (rads)
         lower_angle: 0.845
         upper_angle: 1.020
