@@ -151,7 +151,11 @@ local_costmap:
         z_voxels: 16
         max_obstacle_height: 2.0
         mark_threshold: 0
-        observation_sources: zed
+        observation_sources: zed, scan
+        scan:
+          topic: /scan_filtered
+          max_obstacle_height: 2.0
+          clearing: true
         zed:
           topic: /zed/zed_node/point_cloud/cloud_registered
           data_type: "PointCloud2"
@@ -194,7 +198,11 @@ global_costmap:
         z_voxels: 16
         max_obstacle_height: 2.0
         mark_threshold: 0
-        observation_sources: zed
+        observation_sources: zed, scan
+        scan:
+          topic: /scan_filtered
+          max_obstacle_height: 2.0
+          clearing: true
         zed:
           topic: /zed/zed_node/point_cloud/cloud_registered
           data_type: "PointCloud2"
@@ -321,17 +329,26 @@ collision_monitor:
       min_points: 12
       visualize: False
       enabled: True
-    observation_sources: ["zed"]
+    observation_sources: ["zed", "scan"]
     zed:
       topic: /zed/zed_node/point_cloud/cloud_registered
       type: "pointcloud"
       enabled: true
-
+      min_height: 0.15
+      max_height: 1.8
+      min_range: 0.0
+      source_timeout: 0.5
+      
+    scan:
+      type: "scan"
+      topic: "scan_filtered"
       min_height: 0.15
       max_height: 1.8
 
       min_range: 0.0
       source_timeout: 0.5
+
+
 
 docking_server:
   ros__parameters:
