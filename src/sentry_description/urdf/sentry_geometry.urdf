@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<!-- Generated using onshape-to-robot -->
+<!-- Onshape https://cad.onshape.com/documents/9c46da4aefea469ca529393c/w/ab4814ada347a706fd3aba82/e/41f4a9294df1aa2c87f06346 -->
+<robot name="husky">
+  <!-- Link base_link -->
+  <link name="camera_bridge_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1e-09"/>
+      <inertia ixx="1e-09" ixy="0" ixz="0" iyy="1e-09" iyz="0" izz="1e-09"/>
+    </inertial>
+  </link>
+  <!-- Link 3030_t_slot_23in -->
+  <link name="3030_t_slot_23in">
+    <inertial>
+      <origin xyz="0.336972 0.251221 0.0649625" rpy="0 0 0"/>
+      <mass value="0.810237"/>
+      <inertia ixx="0.000731527" ixy="1.33765e-06" ixz="4.8971e-08" iyy="0.0266051" iyz="4.97322e-05" izz="0.0260653"/>
+    </inertial>
+    <!-- Part 3030_t_slot_23in_parts -->
+    <visual>
+      <origin xyz="0.336972 0.251221 0.0649625" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://sentry_description/meshes/merged/3030_t_slot_23in_visual.stl"/>
+      </geometry>
+      <material name="3030_t_slot_23in_parts_material">
+        <color rgba="0.52422 0.655399 0.738306 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.336972 0.251221 0.0649625" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://sentry_description/meshes/merged/3030_t_slot_23in_collision.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Joint from base_link to 3030_t_slot_23in -->
+  <joint name="base_link_to_3030_t_slot_23in" type="fixed">
+    <origin xyz="0 0 0" rpy="0 -0 0"/>
+    <parent link="camera_bridge_link"/>
+    <child link="3030_t_slot_23in"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10"/>
+  </joint>
+</robot>

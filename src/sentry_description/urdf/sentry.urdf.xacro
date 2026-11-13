@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot name="sentry" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:arg name="use_sim" default="false"/>
+    <xacro:arg name="use_mock_hardware" default="false"/>
+
+    <!-- Include generated urdf -->
+    <xacro:include filename="$(find sentry_description)/urdf/sentry_geometry.urdf" />
+    <xacro:include filename="$(find sentry_description)/urdf/sensors.urdf.xacro" />
+
+    <joint name="camera_bridge_joint" type="fixed">
+        <origin xyz="0.264252 -0.337796  0.286427" rpy="0 0 ${pi/2}" />
+        <parent link="base_link"/>
+        <child link="camera_bridge_link" />
+    </joint>
+
+</robot>
