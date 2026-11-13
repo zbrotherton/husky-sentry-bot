@@ -1,0 +1,103 @@
+ekf_node_local:
+  ros__parameters:
+    frequency: 30.0
+    sensor_timeout: 0.2
+
+    two_d_mode: true
+    publish_tf: true
+    print_diagnostics: true
+
+    map_frame: map
+    odom_frame: odom
+    base_link_frame: base_link
+    world_frame: odom
+
+    # Raw Husky wheel odometry
+    odom0: /platform/odom
+    odom0_config: [
+      false, false, false,
+      false, false, false,
+      true,  false, false,
+      false, false, true,
+      false, false, false
+    ]
+    odom0_differential: false
+    odom0_relative: false
+    odom0_queue_size: 10
+
+    # ZED visual-inertial odometry
+    odom1: /zed/zed_node/odom
+    odom1_config: [
+      true,  true,  false,
+      false, false, true,
+      false, false, false,
+      false, false, false,
+      false, false, false
+    ]
+    odom1_differential: false
+    odom1_relative: true
+    odom1_queue_size: 10
+
+
+ekf_node_global:
+  ros__parameters:
+    frequency: 30.0
+    sensor_timeout: 0.5
+
+    two_d_mode: true
+    publish_tf: true
+    print_diagnostics: true
+
+    map_frame: map
+    odom_frame: odom
+    base_link_frame: base_link
+    world_frame: map
+
+    # Cascaded local EKF.
+    #
+    # Use the local EKF's velocity estimates to propagate the global
+    # estimate between GNSS measurements. Do not fuse its X/Y/Yaw pose
+    # here, since those values are locally referenced and allowed to drift.
+    odom0: /odometry/local
+    odom0_config: [
+      false, false, false,
+      false, false, false,
+      true,  false, false,
+      false, false, true,
+      false, false, false
+    ]
+    odom0_differential: false
+    odom0_relative: false
+    odom0_queue_size: 10
+
+    # GNSS position after conversion by navsat_transform_node.
+    #
+    # This provides globally referenced X/Y corrections.
+    odom1: /odometry/gps
+    odom1_config: [
+      true,  true,  false,
+      false, false, false,
+      false, false, false,
+      false, false, false,
+      false, false, false
+    ]
+    odom1_differential: false
+    odom1_relative: false
+    odom1_queue_size: 10
+
+    # Absolute heading from the ZED-X20D moving-baseline solution.
+    #
+    # Assumes your heading conversion node publishes sensor_msgs/Imu
+    # with ROS ENU yaw in the orientation field.
+    imu0: /gnss/heading_imu
+    imu0_config: [
+      false, false, false,
+      false, false, true,
+      false, false, false,
+      false, false, false,
+      false, false, false
+    ]
+    imu0_differential: false
+    imu0_relative: false
+    imu0_remove_gravitational_acceleration: false
+    imu0_queue_size: 10
