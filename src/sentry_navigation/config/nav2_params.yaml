@@ -386,7 +386,7 @@ collision_monitor:
       type: "scan"
       topic: /scan_filtered
       enabled: true
-      source_timeout: 0.5
+      source_timeout: 1.0
 
     # Supplemental forward 3-D collision source
     zed:
