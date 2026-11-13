@@ -211,7 +211,7 @@ global_costmap:
       rolling_window: true
       width: 60
       height: 60
-      plugins: ["static_layer", "voxel_layer", "inflation_layer"]
+      plugins: ["voxel_layer", "inflation_layer"]
       voxel_layer:
         plugin: "nav2_costmap_2d::VoxelLayer"
         enabled: true
@@ -265,9 +265,6 @@ global_costmap:
           raytrace_max_range: 6.0
 
           observation_persistence: 0.0
-      static_layer:
-        plugin: "nav2_costmap_2d::StaticLayer"
-        map_subscribe_transient_local: true
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 4.0
