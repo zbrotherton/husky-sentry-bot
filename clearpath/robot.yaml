@@ -1,13 +1,16 @@
-serial_number: a200-0000
+serial_number: a200-0679
 version: 0
 system:
   hosts:
-    - hostname: cpr-a200-0000
+    - hostname: cpr-a200-0679
       ip: 192.168.131.1
   ros2:
-    namespace: a200_0000
+    namespace: "/"
+    workspaces:
+      - "/home/robot/husky_ws/install/setup.bash"
 platform:
-  controller: ps4
+  enable_ekf: false
+  controller: logitech
   attachments:
     - name: front_bumper
       type: a200.bumper
