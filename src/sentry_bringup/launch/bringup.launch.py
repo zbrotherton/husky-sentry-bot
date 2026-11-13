@@ -1,5 +1,5 @@
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, TimerAction
 from launch.conditions import IfCondition, UnlessCondition
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
@@ -23,12 +23,17 @@ def generate_launch_description():
                  '/sentry_localization.launch.py']
             )
         ),
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                [FindPackageShare('sentry_sensors'),
-                 '/launch',
-                 '/sentry_sensors.launch.py']
-            )
+        TimerAction(
+            period=5.0,
+            actions=[
+                IncludeLaunchDescription(
+                    PythonLaunchDescriptionSource(
+                        [FindPackageShare('sentry_sensors'),
+                         '/launch',
+                         '/sentry_sensors.launch.py']
+                    )
+                )
+            ]
         ),
         Node(
             package='foxglove_bridge',
