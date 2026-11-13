@@ -6,7 +6,7 @@ scan_to_scan_filter_chain:
       params:
         #sector to remove (rads)
         lower_angle: -0.945
-        upper_angle: -0.804
+        upper_angle: -0.780
 
     filter2: 
       name: right_standoff_filter
