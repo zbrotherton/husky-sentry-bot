@@ -27,16 +27,6 @@ def generate_launch_description():
         "zed_params.yaml"
     )
 
-    robot_state_publisher = Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        parameters=[{
-        'robot_description': Command([
-                'xacro ', os.path.join(sentry_sensors_package, 'urdf/zed.urdf.xacro'),
-            ])
-        }],
-    )
-
     zed = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(zed_launch),
         launch_arguments={
@@ -47,4 +37,4 @@ def generate_launch_description():
         }.items()
     )
 
-    return LaunchDescription([zed, robot_state_publisher])
+    return LaunchDescription([zed])
