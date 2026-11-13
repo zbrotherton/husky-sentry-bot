@@ -5,7 +5,12 @@
 
     <!-- Include generated urdf -->
     <xacro:include filename="$(find sentry_description)/urdf/sentry_geometry.urdf" />
+    <xacro:include filename="$(find sentry_description)/urdf/sensors.urdf.xacro" />
 
-
+    <joint name="camera_bridge_joint" type="fixed">
+        <origin xyz="0.264252 -0.337796  0.286427" rpy="0 0 ${pi/2}" />
+        <parent link="base_link"/>
+        <child link="camera_bridge_link" />
+    </joint>
 
 </robot>

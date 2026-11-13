@@ -1,0 +1,20 @@
+{
+    "url": "https://cad.onshape.com/documents/9c46da4aefea469ca529393c/w/ab4814ada347a706fd3aba82/e/41f4a9294df1aa2c87f06346",
+    "output_format": "urdf",
+    "output_filename": "sentry_camera_bridge_geometry",
+    "assets_directory": "meshes",
+
+    "configuration": "default",
+    "robot_name": "sentry",
+    "package_name": "sentry_description",
+    
+    "merge_stls": true,
+    
+    "simplify_stls": true,
+    "max_stl_size": 3,
+
+    "use_scads": true,
+    "pure_shape_dilatation": 0.0,
+
+    "add_dummy_base_link": true
+}
