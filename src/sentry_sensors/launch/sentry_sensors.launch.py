@@ -52,7 +52,25 @@ def generate_launch_description():
         }.items()
     )
 
+    bounds_filter_config = os.path.join(
+        sentry_sensors_package,
+        'config',
+        'bounds_filter.yaml'
+    )
+
+    bounds_filter = Node(
+        package='laser_filters',
+        executable='scan_to_scan_filter_chain',
+        parameters=[bounds_filter_config],
+        remappings=[
+            ('scan', '/scan'),
+            ('scan_filtered', '/scan_filtered')
+        ],
+        output='screen'
+    )
+
     return LaunchDescription([
         zed,
-        rplidar
+        rplidar,
+        bounds_filter
     ])
